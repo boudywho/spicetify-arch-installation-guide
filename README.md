@@ -2,6 +2,43 @@
 
 **Let's get started!**
 
+## Spicetify Installation Script for Arch Linux (Experimental)
+
+This script automates the installation of Spicetify on Arch Linux machines. **Please note that this script is in a very early testing phase and may not work as expected.** 
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/boudywho/spicetify-arch-installation-guide
+   ```
+
+2. Navigate to the cloned directory:
+   ```bash
+   cd spicetify-arch-installation-guide
+   ```
+
+3. Grant execute permissions to the script:
+   ```bash
+   chmod +x spicetify.sh
+   ```
+
+4. Run the script:
+   ```bash
+   ./spicetify.sh
+   ```
+
+### Troubleshooting
+
+- Ignore any errors that may appear during the installation process.
+- After the script finishes, verify if Spotify has been successfully spiced up. 
+- If you encounter any issues or Spotify is not patched (you can't see marketplace on the top left of spotify), please open an issue on the repository and provide the full terminal output for debugging assistance. Your feedback is crucial for improving the script.
+
+**Disclaimer:** This script is experimental and provided as-is. Use it at your own risk. It has been specifically designed for Arch Linux and may not be compatible with other distributions. 
+
+
+## Second method (manual)
+
 1. **Install the tool:**
 
    * **Curl:** For downloading Spicetify.
