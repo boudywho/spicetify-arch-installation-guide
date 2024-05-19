@@ -1,114 +1,114 @@
-# Spice Up Your Spotify: A Beginner's Guide to Installing Spicetify on Arch Linux (Flatpak Edition)
+## Spice Up Your Spotify on Arch Linux: A Beginner's Guide to Spicetify (Flatpak Edition)
 
-**Let's get started!**
+This guide will help you install and configure Spicetify on your Arch Linux system using the Flatpak version of Spotify. We offer two methods: an experimental installation script and a detailed manual approach.
 
-## Spicetify Installation Script for Arch Linux (Experimental)
+##  Installation Methods
 
-This script automates the installation of Spicetify on Arch Linux machines. **Please note that this script is in a very early testing phase and may not work as expected.** 
+### 1. Experimental Installation Script
 
-### Installation
+This script automates the Spicetify installation process. **However, please note it's in early testing and may not work perfectly.**
 
-1. Clone the repository:
+#### Installation Steps:
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/boudywho/spicetify-arch-installation-guide
    ```
-
-2. Navigate to the cloned directory:
+2. **Navigate to the directory:**
    ```bash
    cd spicetify-arch-installation-guide
    ```
-
-3. Grant execute permissions to the script:
+3. **Make the script executable:**
    ```bash
    chmod +x spicetify.sh
    ```
-
-4. Run the script:
+4. **Run the script:**
    ```bash
    ./spicetify.sh
    ```
 
-### Troubleshooting
+#### Troubleshooting:
 
-- Ignore any errors that may appear during the installation process.
-- After the script finishes, verify if Spotify has been successfully spiced up. 
-- If you encounter any issues or Spotify is not patched (you can't see marketplace on the top left of spotify), please open an issue on the repository and provide the full terminal output for debugging assistance. Your feedback is crucial for improving the script.
+- Ignore any errors during installation.
+- Verify if Spotify is customized after the script completes. Look for the marketplace at the top left.
+- If you encounter issues, please open an issue on the [repository](https://github.com/boudywho/spicetify-arch-installation-guide) with the full terminal output for assistance.
 
-**Disclaimer:** This script is experimental and provided as-is. Use it at your own risk. It has been specifically designed for Arch Linux and may not be compatible with other distributions. 
+**Disclaimer:** This script is experimental and provided "as-is." Use it at your own risk. It is designed for Arch Linux and may not be compatible with other distributions. 
 
+### 2. Manual Installation
 
-## Second method (manual)
+####  Step 1: Install Curl
 
-1. **Install the tool:**
+```bash
+sudo pacman -S curl
+```
 
-   * **Curl:** For downloading Spicetify.
-     ```bash
-     sudo pacman -S curl
-     ``` 
+####  Step 2: Install Spicetify
 
-2. **Get Spicetify (The Easy Way):**
+```bash
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+```
 
+#### Step 3: Locate Spotify's Flatpak Directory
+
+1. Run the following command to find your Flatpak installations:
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-cli/master/install.sh | sh
+   flatpak --installations
    ```
-   This one-liner downloads and installs Spicetify automatically!
+2. Look for an entry containing `com.spotify.Client` and note the path to its directory.
+3. Navigate through the subfolders until you find one containing files like `spotify`, `xpui`, etc. This is Spotify's installation directory.
 
-3. **Find Spotify's Hideout:**
+   **Example path:** `/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/`
 
-   * Spotify lives in a hidden folder within your Flatpak installation. To find it, run:
-     ```bash
-     flatpak --installations
-     ```
-   * You'll see a path to your Flatpak directory. Look for a folder containing something like `com.spotify.Client`.
-   * Keep digging through subfolders until you find one with files like `spotify`, `xpui`, etc. This is where Spotify hides!  
-   * For example, on my machine, Spotify's files were located here:  `/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/`
+#### Step 4: Configure Spicetify
 
-4. **Tell Spicetify where to look:**
+1. Open Spicetify's configuration file:
+   ```bash
+   nano ~/.config/spicetify/config-xpui.ini
+   ```
+2. Find the line `spotify_path =` and paste the path you found in Step 3. Ensure there are no leading or trailing spaces.
+   ![Configuration Screenshot](https://github.com/boudywho/spicetify-arch-installation-guide/assets/113399517/f77ba8a7-872b-4983-afff-a39884e769ba)
+3. Save the file (Ctrl+X, then Y, then Enter).
 
-   * Open Spicetify's configuration file with:
-     ```bash
-     nano ~/.config/spicetify/config-xpui.ini 
-     ```
-   * Find the line `spotify_path =` and paste the path to the folder you found in step 3.  Make sure there are no spaces or extra characters at the beginning or end of the path.
-   * Save the file by pressing Ctrl+X, then Y, then Enter.
-   * Should look like this
-![image](https://github.com/boudywho/spicetify-arch-installation-guide/assets/113399517/f77ba8a7-872b-4983-afff-a39884e769ba)
+#### Step 5: Locate Spotify's Preferences File
 
-5. **Unlock Spotify's Secrets:**
+1. Run the following command to find Spotify's preferences file:
+   ```bash
+   find ~ -name 'prefs' -path '*com.spotify.Client*'
+   ```
+2. Copy the entire path displayed.
 
-   * Spotify keeps its settings in a preferences file. Let's find it:
-     ```bash
-     find ~ -name 'prefs' -path '*com.spotify.Client*'
-     ```
-   * This will show you the path to Spotify's preferences file. Copy the entire path.
-   * Open Spicetify's configuration file again:
-     ```bash
-     nano ~/.config/spicetify/config-xpui.ini 
-     ```
-   * For example, on my machine, Spotify's files were located here:  `/home/boudy/.var/app/com.spotify.Client/config/spotify/prefs`
-   * Find the line `prefs_path =` and paste the path to the preferences file you just copied.
-   * Should Look like this
-   * ![image](https://github.com/boudywho/spicetify-arch-installation-guide/assets/113399517/4f1fa362-c173-4e54-973b-247b080144c0)
+#### Step 6: Configure Spicetify with Preferences Path
 
-   * Save the file like you did before (Ctrl+X, Y, Enter).
+1. Open Spicetify's configuration file again:
+   ```bash
+   nano ~/.config/spicetify/config-xpui.ini 
+   ```
+2. Find the line `prefs_path =` and paste the path to the preferences file you copied.
+   ![Preferences Path Screenshot](https://github.com/boudywho/spicetify-arch-installation-guide/assets/113399517/4f1fa362-c173-4e54-973b-247b080144c0)
+3. Save the file.
 
-6. **Give Spicetify permission:**
+#### Step 7: Grant Permissions
 
-   * We need to allow Spicetify to modify Spotify's files:
-     ```bash
-     sudo chmod a+wr <Spotify Flatpak folder path> 
-     sudo chmod a+wr -R <Spotify Flatpak folder path>/Apps
-     ```
-     Replace `<Spotify Flatpak folder path>` with the path you found in step 3. 
+1. Give Spicetify permission to modify Spotify's files:
+   ```bash
+   sudo chmod a+wr <Spotify Flatpak folder path> 
+   sudo chmod a+wr -R <Spotify Flatpak folder path>/Apps
+   ```
+   Replace `<Spotify Flatpak folder path>` with the path from Step 3.
 
-7. **Spice it Up!**
-     ```bash
-     spicetify backup apply
-     ```
+#### Step 8: Apply Spicetify
 
-9. **Market-Place:**
-   * To get the marketplace, use this command
-     ```bash
-     curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
-     ```
-Now go forth and customize your Spotify experience! 
+```bash
+spicetify backup apply
+```
+
+#### Step 9: Install Spicetify Marketplace
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
+```
+
+##  Customization
+
+You're all set! Now you can explore Spicetify's features and personalize your Spotify experience.
