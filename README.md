@@ -22,7 +22,8 @@ This script automates the Spicetify installation process. Make sure you already 
    ```bash
    chmod +x spicetify.sh
    ```
-4. **Run the script:** Make sure to type "y" when it asks you to install marketplace (it's crucial for the script to work)
+4. **Run the script:**
+5. **Make sure to type "y" when it asks you to install marketplace (it's crucial for the script to work)**
    ```bash
    ./spicetify.sh
    ```
