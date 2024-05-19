@@ -6,7 +6,7 @@ This guide will help you install and configure Spicetify on your Arch Linux syst
 
 ### 1. Experimental Installation Script
 
-This script automates the Spicetify installation process. Make sure you already installed Spotify on your system from flathub.org **However, please note it's in early testing and may not work perfectly.**
+This script automates the Spicetify installation process. Make sure you already installed Spotify on your system from [Flathub](https://flathub.org) **However, please note it's in early testing and may not work perfectly.**
 
 #### Installation Steps:
 
