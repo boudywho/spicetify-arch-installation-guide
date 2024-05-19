@@ -1,4 +1,4 @@
-## Spice Up Your Spotify: A Beginner's Guide to Installing Spicetify on Arch Linux (Flatpak Edition)
+# Spice Up Your Spotify: A Beginner's Guide to Installing Spicetify on Arch Linux (Flatpak Edition)
 
 **Let's get started!**
 
